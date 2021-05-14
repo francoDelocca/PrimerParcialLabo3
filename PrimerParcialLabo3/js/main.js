@@ -219,11 +219,16 @@ function postRequestEditar(id, nombre, cuatrimestre, fecha, turno) {
         if (this.status == 200 && this.readyState == 4) {
 
             let response = JSON.parse(this.responseText);
+
+            console.log(response);
+
+            if (response.type == "ok") {
+                reloadContent(object);
+            }
             loader.classList.add("display-none");
-            /* loadHtml(object); */
-            reloadContent(object);
-            // let loader = $("loader");
-            /* loader.setAttribute("hidden", "true"); */
+
+
+
 
         } else {
             loader.classList.add("display-none");
@@ -263,10 +268,13 @@ function postRequestEliminar(id) {
 
                 let response = JSON.parse(this.responseText);
                 loader.classList.add("display-none");
-                /* loadHtml(object); */
-                removeRow(object);
-                // let loader = $("loader");
-                /* loader.setAttribute("hidden", "true"); */
+
+                if (response.type == "ok") {
+                    removeRow(object);
+                }
+
+
+
 
 
 
